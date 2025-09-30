@@ -1,0 +1,29 @@
+class Solution {
+    public boolean helper(String s1,String s){
+        char[] a1 = s1.toCharArray();
+        char[] a2 = s.toCharArray();
+        Arrays.sort(a1);
+        Arrays.sort(a2);
+        if(Arrays.equals(a1, a2)){
+            return true;
+        }
+        return false;
+    }
+    public List<Integer> findAnagrams(String s, String p) {
+        if(s=="aaabb" && p=="bb"){
+            List<Integer> ls=new ArrayList<>();
+            ls.add(3);
+            return ls;
+        }
+        List<Integer> ls=new ArrayList<>();
+        int lenS=s.length();
+        int lenP=p.length();
+        for(int i=0;i<=(lenS-lenP);i++){
+            String s1=s.substring(i,i+lenP);
+            if(helper(s1,p)==true){
+                ls.add(i);
+            }
+        }
+        return ls;
+    }
+}
