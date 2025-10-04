@@ -1,0 +1,21 @@
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] nums, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+        find(0, nums, target, new ArrayList<>(), result);
+        return result;
+    }
+    private void find(int index, int[] nums, int remain, List<Integer> cur, List<List<Integer>> result) {
+        if (remain == 0) {
+            result.add(new ArrayList<>(cur));
+            return;
+        }
+        for (int i = index; i < nums.length; i++) {
+            if (i > index && nums[i] == nums[i - 1]) continue;
+            if (nums[i] > remain) break;
+            cur.add(nums[i]);
+            find(i + 1, nums, remain - nums[i], cur, result);
+            cur.remove(cur.size() - 1);
+        }
+    }
+}
