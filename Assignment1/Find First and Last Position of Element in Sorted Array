@@ -1,6 +1,6 @@
 class Solution {
     public int first(int[] nums, int t) {
-        int s = 0, e = nums.length - 1, ans = -1;
+        int s = 0, e = nums.length - 1, ans = -1 ;
         while (s <= e) {
             int mid = (s + e) / 2;
             if (nums[mid] == t) {
