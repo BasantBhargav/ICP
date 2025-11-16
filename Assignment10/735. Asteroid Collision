@@ -1,0 +1,22 @@
+class Solution {
+    public int[] asteroidCollision(int[] a) {
+        Stack<Integer> st = new Stack<>();
+        for (int x : a) {
+            boolean alive = true;
+            while (!st.isEmpty() && st.peek() > 0 && x < 0) {
+                if (Math.abs(st.peek()) < Math.abs(x)) {
+                    st.pop();
+                    continue;
+                } else if (Math.abs(st.peek()) == Math.abs(x)) {
+                    st.pop();
+                }
+                alive = false;
+                break;
+            }
+            if (alive) st.push(x);
+        }
+        int[] ans = new int[st.size()];
+        for (int i = ans.length - 1; i >= 0; i--) ans[i] = st.pop();
+        return ans;
+    }
+}
